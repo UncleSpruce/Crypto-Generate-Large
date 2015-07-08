@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://peterolson.github.com/BigInteger.js/BigInteger.min.js"></script>
+		<script src="http://peterolson.github.com/BigRational.js/BigInt_BigRat.min.js"></script>
+	</head>
+	<body>
+		<p>Header</p>
+		<p>Footer</p>
+		<FORM>
+			<INPUT ID="Box1" TYPE="Text">
+			<P>
+			<INPUT ID="Box2" TYPE="Text">
+			<P>
+			<INPUT ID="Box3" TYPE="Text">
+			<P>
+			<INPUT ID="TheButton" TYPE="Button" Value="Recover">
+		</FORM>
+		<script>
+			
+			var zero = bigRat();
+			var threeFourths = bigRat(0.75);
+			var fiveHalves = bigRat("5/2");
+			$("#TheButton").click(function(){
+				$("#Box1").val(fGenerateBigLimitedInt(1, 4));
+			});
+			
+			// Generate a large integer.
+			
+			var fGenerateBigInt = function(pSize){
+				var lclGeneratedNumber = bigInt();
+				var lclRPrecision = pSize;
+				var lclRArray = new Uint32Array(lclRPrecision);
+				window.crypto.getRandomValues(lclRArray);
+			
+				for (var i = 0; i < lclRArray.length; i++){
+					lclGeneratedNumber = lclGeneratedNumber.add(bigInt(2).pow(32).pow(i).multiply(bigInt(lclRArray[i])));
+				}
+				
+				return lclGeneratedNumber;
+			};
+			
+			var fGenerateBigLimitedInt = function(pLowerLimit, pUpperLimit){
+				// Returns x: pLowerLimit <= x < pUpperLimit
+				var lclSizeOfGenerator = 0;
+				var lclRange = bigInt(pUpperLimit - pLowerLimit);
+				while (bigInt(2).pow(32 * lclSizeOfGenerator).lesserOrEquals(lclRange)){
+					lclSizeOfGenerator++;
+				};
+				console.log(lclSizeOfGenerator)
+				return fGenerateBigInt(lclSizeOfGenerator).mod(lclRange).add(pLowerLimit);
+			};
+			
+			var fMillerRabinIsComposite = function(pTestNumber, pNumberOfTests){
+				// The miller Rabin Primality Test.
+				
+				//if (pTestNumber < 3){
+				//	console.log("Warning: " + pTestNumber + " is not 3 or greater in fMillerRabinIsComposite Test.");
+				//}
+				var lclPARs = 0;
+				var lclPARd = pTestNumber.minus(1);
+				while (lclTempNumber.mod(2).equals(0)){
+					lclPARs++;
+					lclPARd = lclPARd.divide(2);
+				};
+				
+				for (var i = 0; i < pNumberOfTests; i++){
+					var lclRandomNumber = fGenerateBigLimitedInt(2, pTestNumber - 2);
+					var lclPARx = lclRandomNumber.pow(lclPARd).mod(pTestNumber);
+					if (lclPARx.equals(1) || lclPARx.equals(pTestNumber.minus(1))){
+					
+					} else {
+						for (var j = 0; j < lclPARs - 1; j++){
+							lclPARx = lclPARx.square().mod(pTestNumber);
+							if (lclPARx.square 
+						}
+					}
+				
+				}
+				return false;
+			}
+			
+		</script>
+	</body>
+</html>
+
