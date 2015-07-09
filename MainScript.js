@@ -1,5 +1,15 @@
-var forge = require('node-forge');
-var BigInteger = forge.jsbn.BigInteger;
+var yourPL = new PrimeList(10);
+var robinson = yourPL.getNumberCoprimeWithList(5000);
+console.log(robinson);
+
+//alert(yourPL.product());
+
+
+//alert();
+
+
+//var forge = require('node-forge');
+//var BigInteger = forge.jsbn.BigInteger;
 
 // primes are 30k+i for i = 1, 7, 11, 13, 17, 19, 23, 29
 var GCD_30_DELTA = [6, 4, 2, 4, 2, 4, 6, 2];
@@ -75,80 +85,8 @@ $("#TheButton").click(function(){
 
 });
 
-// Generate a large integer.
 
-var fGenerateBigInt = function(pSize){
-	var lclGeneratedNumber = bigInt();
-	var lclRPrecision = pSize;
-	var lclRArray = new Uint32Array(lclRPrecision);
-	window.crypto.getRandomValues(lclRArray);
-
-	for (var i = 0; i < lclRArray.length; i++){
-		lclGeneratedNumber = lclGeneratedNumber.add(bigInt(2).pow(32).pow(i).multiply(bigInt(lclRArray[i])));
-	}
-	
-	return lclGeneratedNumber;
-};
-
-function PrimeList(pSize){
-	this.lclArrayOfPrimes = [2];
-	var lclTestValue = 3;
-	
-	var fHasMultipleInList = function(pTest, pList){
-		for (var i = 0; i < pList.length; i++){
-			if (pTest % pList[i] = 0){
-				return true;
-			}
-		}
-		return false;
-	};
-	
-	while (this.lclArrayOfPrimes.length < pSize){
-		if (!fHasMultipleInList(lclTestValue, this.lclArrayOfPrimes)){
-			this.lclArrayOfPrimes.push(lclTestValue);
-		}
-		lclTestValue++;
-	}
-};
-
-PrimeList.prototype.getPrimeList = function(){
-	return this.lclArrayOfPrimes;
-};
-
-PrimeList.prototype.getNumberCoprimeWithList = function(pLowerBound){
-	//pLowerBound is assumed to be of bigInt type				
-	var lclIndexOfPrimeArray = 0;
-	var lclGrandFactor = bigInt(1);
-	while (lclIndexOfPrimeArray < this.lclArrayOfPrimes.length){
-		while (pLowerBound % this.lclArrayOfPrimes[lclIndexOfPrimeArray] === 0){
-			pLowerBound += lclGrandFactor;
-		}
-		lclGrandFactor = lclGrandFactor.multiply(bigInt(this.lclArrayOfPrimes[lclIndexOfPrimeArray]));
-		lclIndexOfPrimeArray++;
-	}
-	return pLowerBound;
-};
-
-var lclPL = PrimeList(10);
-
-
-
-
-var fGenerateBigLimitedInt = function(pLowerLimit, pUpperLimit){
-	// Returns x: pLowerLimit <= x < pUpperLimit
-	var lclSizeOfGenerator = 0;
-	var lclRange = bigInt(pUpperLimit - pLowerLimit);
-	while (bigInt(2).pow(32 * lclSizeOfGenerator).lesserOrEquals(lclRange)){
-		lclSizeOfGenerator++;
-	};
-	console.log(lclSizeOfGenerator)
-	return fGenerateBigInt(lclSizeOfGenerator).mod(lclRange).add(pLowerLimit);
-};
-
-fGenerateLargeAlmostPrime(){
-	
-}
-
+/*
 var fMillerRabinIsComposite = function(pTestNumber, pNumberOfTests){
 	// The miller Rabin Primality Test.
 	
@@ -179,3 +117,4 @@ var fMillerRabinIsComposite = function(pTestNumber, pNumberOfTests){
 	}
 	return false;
 }
+*/
