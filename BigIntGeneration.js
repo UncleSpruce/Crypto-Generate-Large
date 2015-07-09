@@ -1,7 +1,3 @@
-var yourPL = new PrimeList(10);
-var robinson = yourPL.getNumberCoprimeWithList(5000);
-console.log(robinson);
-
 var fGenerateBigInt = function(pSize){
 	var lclGeneratedNumber = bigInt();
 	var lclRPrecision = pSize;

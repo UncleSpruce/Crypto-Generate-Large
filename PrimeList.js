@@ -23,7 +23,17 @@ PrimeList.prototype.getPrimeList = function(){
 	return this.lclArrayOfPrimes;
 };
 
-PrimeList.prototype.getNumberCoprimeWithList = function(pLowerBound){
+PrimeList.prototype.getNumberCoprimeWithList = function(pLowerBound, pTimeOut){
+	var lclModDifference = bigInt(pLowerBound).mod(bigInt(this.product()));
+	var lclReturnValue = bigInt(pLowerBound).minus(bigInt(lclModDifference)).add(bigInt(this.product()));
+	
+	var lclNumberToAdd = bigInt(1);
+	return  lclReturnValue.add(lclNumberToAdd);
+	//var lclProduct = bigInt(this.product).mod()
+	/*
+	var lclDateStart = new Date();
+	var lclStartTime = lclDateStart.getTime();
+	
 	//pLowerBound is assumed to be of bigInt type				
 	var lclReturnValue = bigInt(pLowerBound);
 	var lclIndexOfPrimeArray = 0;
@@ -31,22 +41,25 @@ PrimeList.prototype.getNumberCoprimeWithList = function(pLowerBound){
 	while (lclIndexOfPrimeArray < this.lclArrayOfPrimes.length){
 		while (lclReturnValue.mod(bigInt(this.lclArrayOfPrimes[lclIndexOfPrimeArray])).equals(bigInt(0))){
 			lclReturnValue = lclReturnValue.add(lclGrandFactor); //This loop should only ever run once for each pass.
+			
+			var lclDateNow = new Date();
+			var lclTimeNow = lclDateNow.getTime();
+			if (lclStartTime + pTimeOut < lclTimeNow){
+				return -1; //Return -1 in the event of a timeout
+			}
 		}
 		lclGrandFactor = lclGrandFactor.multiply(bigInt(this.lclArrayOfPrimes[lclIndexOfPrimeArray]));
 		lclIndexOfPrimeArray++;
 		//alert(lclReturnValue);
 	}
+	*/
 	return lclReturnValue;
 };
 
 PrimeList.prototype.product = function(){
-	var lclProduct = 1;
+	var lclProduct = bigInt(1);
 	for (var i = 0; i < this.lclArrayOfPrimes.length; i++){
-		lclProduct = lclProduct * lclArrayOfPrimes[i];
+		lclProduct = lclProduct.multiply(this.lclArrayOfPrimes[i]);
 	}
 	return lclProduct;
 };
-
-var yourPL = new PrimeList(10);
-var robinson = yourPL.getNumberCoprimeWithList(5000);
-console.log(robinson);
