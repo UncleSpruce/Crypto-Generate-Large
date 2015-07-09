@@ -64,26 +64,47 @@ if (bigInt(robinson).eq(bigInt(-1))){
 }
 
 $("#GenerateButton").click(function(){
-	try {
+	//try {
 		//var robinson = fGenerateLargePrimeWithMultipleAttempts(fGenerateBigInt(1), 5000);
-		var lclModulus = fGenerateMassiveSecureInteger();
-		var lclExp1 = fGenerateCoprime(lclModulus.divide(6), lclModulus.divide(6).multiply(5), lclModulus);
-		var lclExp2 = fGenerateCoprime(lclModulus.divide(6), lclModulus.divide(6).multiply(5), lclModulus);
+		var lclModulus = bigInt(fGenerateMassiveSecureInteger());
+		var lclExp1 = bigInt(fGenerateCoprime(lclModulus.divide(6), lclModulus.divide(6).multiply(5), lclModulus));
+		var lclExp2 = bigInt(fGenerateCoprime(lclModulus.divide(6), lclModulus.divide(6).multiply(5), lclModulus));
+		var lclComputedValue = bigInt(2).modPow(lclExp1, lclModulus).modPow(lclExp2, lclModulus);
 		
-		//use .modPow(exp, mod)
+		var lclBox1Value = $("#Box1").val();
+		var lclBox2Value = $("#Box2").val();
+		var lclBox3Value = $("#Box3").val();
+		
+		var lclDifference1 = lclExp1.minus(lclBox1Value);
+		var lclDifference2 = lclExp2.minus(lclBox2Value);
+		var lclDifferenceComputedValue = bigInt(lclBox3Value).minus(lclComputedValue);
+		
+		var lclTextBodyString = "";
+		lclTextBodyString += "Modulus: \n" + lclModulus.toString() + "\n";
+		lclTextBodyString += "Exponent1: \n" + lclExp1.toString() + "\n";
+		lclTextBodyString += "Exponent2: \n" + lclExp2.toString() + "\n";
+		lclTextBodyString += "First Difference: \n" + lclDifference1.toString() + "\n"
+		lclTextBodyString += "Second Difference: \n" + lclDifference2.toString() + "\n"
+		lclTextBodyString += "Result Difference: \n" + lclDifferenceComputedValue.toString() + "\n"
+		
 		$("#Box1").val(lclModulus);
 		$("#Box2").val(lclExp1);
 		$("#Box3").val(lclExp2);
 		
-		alert(bigInt.gcd(lclModulus,lclExp1));
-		alert(bigInt.gcd(lclModulus,lclExp2));
+		$("#bodykey").text(lclTextBodyString);
+		/*
+		if (bigInt.gcd(lclModulus,lclExp1).eq()){
+			
+		}
+		*/
+		//alert(bigInt.gcd(lclModulus,lclExp2));
 		
 		//$("#Box2").val(robinson.isPrime());
 		//$("#Box3").val(robinson);
-	}
-	catch(err){
-		console.log(err.message);
-	}
+	//}
+	//catch(err){
+	//	console.log(err.message);
+	//}
 });
 
 $("#KillButton").click(function(){
