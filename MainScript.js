@@ -1,3 +1,4 @@
+/*
 var fGenerateLargePrime = function(pPrimeList, pLowerBound, pTimeOut){
 	 var lclStartDate = new Date();
 	 var lclStartTime = lclStartDate.getTime();
@@ -22,7 +23,7 @@ var fGenerateLargePrime = function(pPrimeList, pLowerBound, pTimeOut){
 	}
 	return lclReturnValue;
 }
-
+*/
 var fGenerateLargePrimeWithMultipleAttempts = function(pLowerBound, pTimeOut){
 	var lclStartDate = new Date();
 	var lclStartTime = lclStartDate.getTime();
@@ -53,7 +54,7 @@ var yourPL = new PrimeList(20);
 
 var fGenerateMassiveSecureInteger = function(){
 	
-	return yourPL.getNumberCoprimeWithList(fGenerateBigInt(10), 20);
+	return yourPL.getNumberCoprimeWithList(fGenerateBigInt(20), 20);
 }
 
 var robinson = fGenerateLargePrimeWithMultipleAttempts(fGenerateBigInt(1), 1000);
@@ -138,9 +139,9 @@ $("#RecoverButton").click(function(){
 	var lclResultingValue = bigInt(2).modPow(lclProductOfExponents, lclModulus).minus(lclDifferenceComputed);
 	//bigInt(2).modPow(bigInt("140914842424436550576872207564091942058388047862146143591191326053888139590378243849497810151351").multiply(bigInt("155119547283960973161665492920987967330606485705855107370238891310992632902140708697193062991384")), bigInt("669464475190260933687266877919394352075981361763163037643428962739635989714852023477727143437571")).minus(bigInt("-11715531813712705254573737473044954269738377258393273655260629244933475088389428181658261086857"));
 	
-	console.log("Product of Exponents");
-	console.log(lclProductOfExponents.toString());
-	console.log(lclTemp2, lclTemp1, lclExp1Value, lclExp1Value, lclResultingValue, lclModulus, lclDifferenceComputed, lclBox2Value, lclBox1Value);
+	//console.log("Product of Exponents");
+	//console.log(lclProductOfExponents.toString());
+	//console.log(lclTemp2, lclTemp1, lclExp1Value, lclExp1Value, lclResultingValue, lclModulus, lclDifferenceComputed, lclBox2Value, lclBox1Value);
 	
 	
 	/*
