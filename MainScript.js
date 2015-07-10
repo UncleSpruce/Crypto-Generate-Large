@@ -15,7 +15,7 @@ $("#GenerateButton").click(function(){
 		$("#JSONBox").val(JSON.stringify(lclJsonKey));
 });
 
-$("#RecoverButton").click(function(){
+var fComputeTheJsonKeyResults = function(){
 	var lclJsonKey = JSON.parse($("#JSONBox").val());
 	var lclBox1Value = bigInt($("#Box1").val());
 	var lclBox2Value = bigInt($("#Box2").val());
@@ -34,4 +34,8 @@ $("#RecoverButton").click(function(){
 	var lclResultingValue = bigInt(2).modPow(lclProductOfExponents, lclModulus).minus(lclDifferenceComputed);
 	
 	$("#Box3").val(lclResultingValue);
+};
+
+$("#RecoverButton").click(function(){
+	fComputeTheJsonKeyResults();
 })
