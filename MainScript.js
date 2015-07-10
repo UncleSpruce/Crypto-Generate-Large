@@ -1,4 +1,4 @@
-/*
+
 var fGenerateLargePrime = function(pPrimeList, pLowerBound, pTimeOut){
 	 var lclStartDate = new Date();
 	 var lclStartTime = lclStartDate.getTime();
@@ -23,7 +23,7 @@ var fGenerateLargePrime = function(pPrimeList, pLowerBound, pTimeOut){
 	}
 	return lclReturnValue;
 }
-*/
+
 var fGenerateLargePrimeWithMultipleAttempts = function(pLowerBound, pTimeOut){
 	var lclStartDate = new Date();
 	var lclStartTime = lclStartDate.getTime();
@@ -42,6 +42,7 @@ var fGenerateLargePrimeWithMultipleAttempts = function(pLowerBound, pTimeOut){
 	}
 }
 
+
 var fGenerateCoprime = function(pLowerLimit, pUpperLimit, pTarget){
 	var lclTest = fGenerateBigLimitedInt(pLowerLimit, pUpperLimit);
 	while (bigInt.gcd(bigInt(lclTest),bigInt(pTarget)).neq(1)){
@@ -54,7 +55,7 @@ var yourPL = new PrimeList(20);
 
 var fGenerateMassiveSecureInteger = function(){
 	
-	return yourPL.getNumberCoprimeWithList(fGenerateBigInt(20), 20);
+	return yourPL.getNumberCoprimeWithList(fGenerateBigInt(10), 20);
 }
 
 var robinson = fGenerateLargePrimeWithMultipleAttempts(fGenerateBigInt(1), 1000);
