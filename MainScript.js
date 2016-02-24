@@ -1,7 +1,6 @@
 $("#GenerateButton").click(function(){
 	var lclJsonKey = fGetJsonKey();
 	
-	
 	/*
 	var lclTextBodyString = "";
 	lclTextBodyString += "Modulus: \n" + lclJsonKey.modulus + "\n";
@@ -14,6 +13,46 @@ $("#GenerateButton").click(function(){
 	*/
 	$("#JSONBox").val(JSON.stringify(lclJsonKey));
 });
+
+var fConvertStringToInt = function(strArg){	
+	var lclCharArray = strArg.split('');
+	var lclIntSum = bigInt();
+	for (i = 0; i < lclCharArray.length; i++) { 
+		lclIntSum = bigInt(lclCharArray[i].charCodeAt(0)).multiply(bigInt(256).pow(i)).add(lclIntSum);
+	}
+	return lclIntSum;
+	//"a".charCodeAt(0)
+};
+
+var fConvertIntToString = function(intArg){
+	// This assumes that intArg is a bigInt type.
+	var lclInt = intArg;
+	var lclCharArray = [];
+	while (lclInt > 0) {
+		console.log(lclInt);
+		var lclModValue = lclInt.mod(256).valueOf();
+		console.log(lclModValue);
+		var lclDesiredChar = String.fromCharCode(lclModValue); // The character to push onto the end of the array
+		console.log(lclDesiredChar);
+		lclCharArray.push(lclDesiredChar);
+		lclInt = lclInt.minus(lclInt.mod(256));
+		console.log(lclInt);
+		lclInt = lclInt.divide(256);
+		console.log(lclInt);
+	}		
+	return lclCharArray.join("");
+}
+
+var fLoopConversionTest = function(lclIntArg){
+	var lclStrArg = "";
+	var lclInt = bigInt(lclIntArg);
+	lclStrArg = fConvertIntToString(lclInt);
+	var lclFinalInt = fConvertStringToInt(lclStrArg);
+	if (bigInt(lclFinalInt) != bigInt(lclIntArg)){
+		throw new Error("Either fConvertStringToInt or fConvertIntToString does not work properly with final int being. " + lclFinalInt);
+	}
+	return lclFinalInt;
+}
 
 var fComputeTheJsonKeyResults = function(){
 	var lclJsonKey = JSON.parse($("#JSONBox").val());
@@ -40,12 +79,3 @@ $("#RecoverButton").click(function(){
 	fComputeTheJsonKeyResults();
 })
 
-var fConvertStringToInt = function(strArg){	
-	var lclCharArray = strArg.split('')
-	var intSum = 0
-	for (i = 0; i < lclCharArray.length; i++) { 
-		intSum += lclCharArray.charCodeAt(i);
-	}
-	//"a".charCodeAt(0)
-	
-}
