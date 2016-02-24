@@ -1,18 +1,18 @@
 $("#GenerateButton").click(function(){
-		var lclJsonKey = fGetJsonKey();
-		
-		
-		/*
-		var lclTextBodyString = "";
-		lclTextBodyString += "Modulus: \n" + lclJsonKey.modulus + "\n";
-		
-		lclTextBodyString += "First Difference: \n" + lclJsonKey.difference1 + "\n"
-		lclTextBodyString += "Second Difference: \n" + lclJsonKey.difference2 + "\n"
-		lclTextBodyString += "Result Difference: \n" + lclJsonKey.differenceComputed + "\n"
-		
-		$("#bodykey").text(lclTextBodyString);
-		*/
-		$("#JSONBox").val(JSON.stringify(lclJsonKey));
+	var lclJsonKey = fGetJsonKey();
+	
+	
+	/*
+	var lclTextBodyString = "";
+	lclTextBodyString += "Modulus: \n" + lclJsonKey.modulus + "\n";
+	
+	lclTextBodyString += "First Difference: \n" + lclJsonKey.difference1 + "\n"
+	lclTextBodyString += "Second Difference: \n" + lclJsonKey.difference2 + "\n"
+	lclTextBodyString += "Result Difference: \n" + lclJsonKey.differenceComputed + "\n"
+	
+	$("#bodykey").text(lclTextBodyString);
+	*/
+	$("#JSONBox").val(JSON.stringify(lclJsonKey));
 });
 
 var fComputeTheJsonKeyResults = function(){
@@ -39,3 +39,13 @@ var fComputeTheJsonKeyResults = function(){
 $("#RecoverButton").click(function(){
 	fComputeTheJsonKeyResults();
 })
+
+var fConvertStringToInt = function(strArg){	
+	var lclCharArray = strArg.split('')
+	var intSum = 0
+	for (i = 0; i < lclCharArray.length; i++) { 
+		intSum += lclCharArray.charCodeAt(i);
+	}
+	//"a".charCodeAt(0)
+	
+}
